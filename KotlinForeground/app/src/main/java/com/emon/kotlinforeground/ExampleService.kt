@@ -23,10 +23,7 @@ class ExampleService: Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val input = intent.getStringExtra("inputExtra")
         val notificationIntent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0, notificationIntent, 0
-        )
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
 
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
