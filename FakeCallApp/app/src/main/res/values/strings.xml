@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Fake Call App</string>
+
+    <string-array name="time">
+        <item>1 min</item>
+        <item>2 min</item>
+        <item>5 min</item>
+        <item>10 min</item>
+        <item>15 min</item>
+    </string-array>
+</resources>

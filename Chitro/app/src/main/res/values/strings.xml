@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Chitro</string>
+
+    <string-array name="order">
+
+        <item>Popular</item>
+        <item>Latest</item>
+
+    </string-array>
+
+    <string-array name="category">
+
+        <item>Backgrounds</item>
+        <item>Fashion</item>
+        <item>Nature</item>
+        <item>Science</item>
+        <item>Education</item>
+        <item>Feelings</item>
+        <item>Health</item>
+        <item>People</item>
+        <item>Religion</item>
+        <item>Places</item>
+        <item>Animals</item>
+        <item>Industry</item>
+        <item>Computer</item>
+        <item>Food</item>
+        <item>Sports</item>
+        <item>Transportation</item>
+        <item>Travel</item>
+        <item>Buildings</item>
+        <item>Music</item>
+        <item>Business</item>
+
+    </string-array>
+
+</resources>
