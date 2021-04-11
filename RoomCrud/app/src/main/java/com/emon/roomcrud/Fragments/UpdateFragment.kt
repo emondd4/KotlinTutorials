@@ -1,12 +1,16 @@
 package com.emon.roomcrud.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.emon.roomcrud.Model.User
@@ -27,6 +31,8 @@ class UpdateFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_update, container, false)
 
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
         view.update_firstName_EditText.setText(args.currentUser.firstName)
         view.update_lastName_EditText.setText(args.currentUser.lastName)
         view.update_age_EditText.setText(args.currentUser.age.toString())
@@ -34,6 +40,8 @@ class UpdateFragment : Fragment() {
         view.update_add_btn.setOnClickListener {
 
             updateItem()
+            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
 
         }
 
@@ -48,10 +56,10 @@ class UpdateFragment : Fragment() {
 
         if (inputCheck(firstName,lastName,age)){
 
-            val user = User(args.currentUser.id,firstName,lastName,age)
-            userViewModel.addUser(user)
+            val updateUser = User(args.currentUser.id,firstName,lastName,age)
+            userViewModel.updateUser(updateUser)
             Toast.makeText(requireContext(),"Successfully Updated", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
 
         }else{
             Toast.makeText(requireContext(),"Please Fill All Field", Toast.LENGTH_SHORT).show()
