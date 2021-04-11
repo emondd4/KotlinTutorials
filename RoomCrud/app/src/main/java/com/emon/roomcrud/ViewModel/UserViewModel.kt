@@ -1,15 +1,18 @@
-package com.emon.roomcrud.Room
+package com.emon.roomcrud.ViewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.emon.roomcrud.Model.User
+import com.emon.roomcrud.Room.UserDatabase
+import com.emon.roomcrud.Repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<User>>
+    val readAllData: LiveData<List<User>>
     private val repository: UserRepository
 
     init {

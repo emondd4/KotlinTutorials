@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Fragments.UpdateFragment"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/update_firstName_EditText"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:hint="FirstName"
+        android:inputType="text"
+        android:gravity="start|center" />
+
+    <EditText
+        android:id="@+id/update_lastName_EditText"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:hint="LastName"
+        android:inputType="text"
+        android:gravity="start|center" />
+
+    <EditText
+        android:id="@+id/update_age_EditText"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:hint="Age"
+        android:inputType="number"
+        android:gravity="start|center" />
+
+    <Button
+        android:id="@+id/update_add_btn"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</LinearLayout>

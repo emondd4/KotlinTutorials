@@ -1,6 +1,8 @@
-package com.emon.roomcrud.Room
+package com.emon.roomcrud.Repository
 
 import androidx.lifecycle.LiveData
+import com.emon.roomcrud.Model.User
+import com.emon.roomcrud.Room.UserDao
 
 class UserRepository(private val userDao: UserDao) {
 
