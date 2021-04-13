@@ -9,8 +9,8 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="160dp"
-        android:layout_height="230dp"
+        android:layout_width="170dp"
+        android:layout_height="270dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp">
@@ -63,6 +63,13 @@
                     android:layout_marginTop="10dp"
                     android:textSize="15sp"
                     android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/product_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="add to cart"
+                    android:layout_margin="10dp" />
 
             </LinearLayout>
 

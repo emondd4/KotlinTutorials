@@ -1,15 +1,19 @@
 package com.emon.offlinecachingwithroom
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.limarket.ModelClass.ProductModel.ProductData
 import com.bdtask.limarket.ModelClass.ProductModel.ProductModel
 import com.emon.offlinecachingwithroom.Adapter.BestSellingProducts
+import com.emon.offlinecachingwithroom.Room.ViewModel.ProductViewModel
 import com.google.gson.Gson
 import dmax.dialog.SpotsDialog
 import retrofit2.Call
@@ -22,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var dialog: AlertDialog
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager: GridLayoutManager
+    lateinit var productViewModel: ProductViewModel
+    lateinit var showBtn: Button
 
     private var bestSellingProducts: BestSellingProducts? = null
     private var dataRequestInterface: DataRequestInterface? = null
@@ -36,11 +42,21 @@ class MainActivity : AppCompatActivity() {
         dataRequestInterface = ApiClient.getRetrofit(this)
             .create(DataRequestInterface::class.java)
 
+        productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+
+        showBtn = findViewById(R.id.show_all)
         recyclerView = findViewById(R.id.recycler)
         layoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = layoutManager
 
         recyclerView.addOnScrollListener(recyclerViewOnScrollListener)
+
+        showBtn.setOnClickListener {
+
+            startActivity(Intent(this,ShowAllActivity::class.java))
+            finish()
+
+        }
 
         getProductData()
     }
@@ -96,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 Log.wtf(TAG, Gson().toJson(response.body()))
 
                 val productList: ArrayList<ProductData?> = response.body()?.product_list!!
-                bestSellingProducts = BestSellingProducts(this@MainActivity, productList)
+                bestSellingProducts = BestSellingProducts(this@MainActivity, productList,productViewModel)
                 recyclerView.adapter = bestSellingProducts
 
                 flag = false
@@ -126,7 +142,7 @@ class MainActivity : AppCompatActivity() {
         val call: Call<ProductModel?>? = dataRequestInterface?.getProductList(
             this.resources?.getString(R.string.key)!!,
             "50",
-            page,
+             page,
             "2",
             "",
             "",
