@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emon.offlinecachingwithroom.Room.Adapter.ProductAdapter
@@ -30,11 +28,13 @@ class ShowAllActivity : AppCompatActivity() {
         setContentView(R.layout.activity_show_all)
 
         productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        val adapter = ProductAdapter()
 
         total = findViewById(R.id.show_all_total_amount)
         deleteBtn = findViewById(R.id.removeAll_Btn)
         recyclerView = findViewById(R.id.show_all_recycler)
+
+        val adapter = ProductAdapter(productViewModel,this@ShowAllActivity,total)
+
         layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
@@ -44,9 +44,10 @@ class ShowAllActivity : AppCompatActivity() {
             adapter.setData(product)
 
             for (i in product.indices){
-                totalAmount += product[i].price.toString().toInt()
+                totalAmount += product[i].sub_price.toString().toInt()
             }
             total.text = totalAmount.toString()
+            totalAmount = 0
 
         })
 

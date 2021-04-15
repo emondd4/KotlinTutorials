@@ -6,14 +6,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.emon.offlinecachingwithroom.Adapter.BestSellingProducts
 import com.emon.offlinecachingwithroom.R
 import com.emon.offlinecachingwithroom.Room.Model.Product
+import com.emon.offlinecachingwithroom.Room.ViewModel.ProductViewModel
+import com.emon.offlinecachingwithroom.ShowAllActivity
 import com.squareup.picasso.Picasso
 
-class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(
+    private val productViewModel: ProductViewModel,
+    private val showAllActivity: ShowAllActivity,
+    private val total: TextView
+) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var productList = emptyList<Product>()
 
@@ -33,31 +37,53 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
         Picasso.get().load(productList[position].thumb_image_url).into(holder.image)
         holder.title.text = productList[position].title
-        holder.price.text = productList[position].price
+        holder.price.text = productList[position].sub_price
+        holder.number.text = productList[position].quantity
+        val price = productList[position].price.toString().toInt()
 
         holder.add.setOnClickListener {
             var temp = holder.number.text.toString().toInt()
-            var temp2 = holder.price.text.toString().toInt()
-
             temp += 1
-            temp2 *= temp
+            val temp2 = price * temp
 
             holder.number.text = temp.toString()
             holder.price.text = temp2.toString()
+
+            val product = Product(
+                productList[position].product_id.toString().toInt(),
+                productList[position].thumb_image_url!!,
+                productList[position].category_name!!,
+                productList[position].price,
+                temp2.toString(),
+                temp.toString(),
+                productList[position].title!!,
+            )
+
+            productViewModel.addProduct(product)
         }
 
         holder.minus.setOnClickListener {
 
             var temp = holder.number.text.toString().toInt()
-            var temp2 = holder.price.text.toString().toInt()
 
-            if (temp != 0){
+            if (temp != 1){
 
                 temp -= 1
-                temp2 *= temp
+                val temp2 = price * temp
 
                 holder.number.text = temp.toString()
                 holder.price.text = temp2.toString()
+
+                val product = Product(
+                    productList[position].product_id.toString().toInt(),
+                    productList[position].thumb_image_url!!,
+                    productList[position].category_name!!,
+                    productList[position].price,
+                    temp2.toString(),
+                    temp.toString(),
+                    productList[position].title!!,
+                )
+                productViewModel.addProduct(product)
             }
         }
 

@@ -54,6 +54,8 @@ class BestSellingProducts(
                 productList[position]?.thumb_image_url!!,
                 productList[position]?.category_name!!,
                 productList[position]?.price!!,
+                productList[position]?.price!!,
+                "1",
                 productList[position]?.title!!,
             )
 

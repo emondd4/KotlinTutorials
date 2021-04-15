@@ -13,5 +13,7 @@ data class Product(
     var thumb_image_url: String? = null,
     var category_name: String? = null,
     var price: String? = null,
+    var sub_price: String? = null,
+    var quantity: String? = null,
     var title: String? = null
 ): Parcelable
