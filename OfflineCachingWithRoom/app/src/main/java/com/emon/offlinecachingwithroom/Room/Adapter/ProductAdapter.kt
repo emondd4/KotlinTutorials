@@ -13,28 +13,54 @@ import com.emon.offlinecachingwithroom.R
 import com.emon.offlinecachingwithroom.Room.Model.Product
 import com.squareup.picasso.Picasso
 
-class ProductAdapter: RecyclerView.Adapter<BestSellingProducts.ViewHolder>() {
+class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var productList = emptyList<Product>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BestSellingProducts.ViewHolder {
+    ): ProductAdapter.ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(
-            R.layout.products_item,
+            R.layout.show_all_item,
             parent,
             false
         )
-        return BestSellingProducts.ViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BestSellingProducts.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get().load(productList[position].thumb_image_url).into(holder.image)
         holder.title.text = productList[position].title
-        holder.category.text = productList[position].category_name
         holder.price.text = productList[position].price
+
+        holder.add.setOnClickListener {
+            var temp = holder.number.text.toString().toInt()
+            var temp2 = holder.price.text.toString().toInt()
+
+            temp += 1
+            temp2 *= temp
+
+            holder.number.text = temp.toString()
+            holder.price.text = temp2.toString()
+        }
+
+        holder.minus.setOnClickListener {
+
+            var temp = holder.number.text.toString().toInt()
+            var temp2 = holder.price.text.toString().toInt()
+
+            if (temp != 0){
+
+                temp -= 1
+                temp2 *= temp
+
+                holder.number.text = temp.toString()
+                holder.price.text = temp2.toString()
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -43,11 +69,12 @@ class ProductAdapter: RecyclerView.Adapter<BestSellingProducts.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val image: ImageView = itemView.findViewById(R.id.product_image)
-        val title: TextView = itemView.findViewById(R.id.product_title)
-        val category: TextView = itemView.findViewById(R.id.product_category)
-        val price: TextView = itemView.findViewById(R.id.product_price)
-        val add: Button = itemView.findViewById(R.id.product_add)
+        val image: ImageView = itemView.findViewById(R.id.show_all_image)
+        val title: TextView = itemView.findViewById(R.id.show_all_title)
+        val price: TextView = itemView.findViewById(R.id.show_all_price)
+        val add: Button = itemView.findViewById(R.id.show_all_add)
+        val minus: Button = itemView.findViewById(R.id.show_all_minus)
+        val number: TextView = itemView.findViewById(R.id.show_all_item_freq)
 
     }
 

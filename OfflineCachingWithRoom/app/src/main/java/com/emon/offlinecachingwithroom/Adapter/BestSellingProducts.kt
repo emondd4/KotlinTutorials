@@ -52,9 +52,9 @@ class BestSellingProducts(
             val product = Product(
                productList[position]?.product_id.toString().toInt(),
                 productList[position]?.thumb_image_url!!,
-                productList[position]?.title!!,
                 productList[position]?.category_name!!,
                 productList[position]?.price!!,
+                productList[position]?.title!!,
             )
 
             productViewModel.addProduct(product)
