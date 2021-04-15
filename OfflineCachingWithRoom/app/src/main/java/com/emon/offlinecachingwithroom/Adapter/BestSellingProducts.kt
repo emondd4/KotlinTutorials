@@ -9,20 +9,22 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bdtask.limarket.ModelClass.ProductModel.ProductData
+import com.emon.offlinecachingwithroom.MainActivity
 import com.emon.offlinecachingwithroom.R
 import com.emon.offlinecachingwithroom.Room.Model.Product
 import com.emon.offlinecachingwithroom.Room.ViewModel.ProductViewModel
 import com.squareup.picasso.Picasso
+import kotlin.coroutines.coroutineContext
 
 
 class BestSellingProducts(
-    private val activity: FragmentActivity?,
+    private val activity: MainActivity?,
     private val productList: ArrayList<ProductData?>,
-    private val productViewModel: ProductViewModel
+    private val productViewModel: ProductViewModel,
+    private val cart: TextView
 ) : RecyclerView.Adapter<BestSellingProducts.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -56,7 +58,13 @@ class BestSellingProducts(
             )
 
             productViewModel.addProduct(product)
-            Toast.makeText(activity?.applicationContext,"Successfully Added", Toast.LENGTH_SHORT).show()
+            productViewModel.readAllData.observe(activity!!,{ product ->
+
+                cart.text = product.size.toString()
+
+            })
+
+            Toast.makeText(activity.applicationContext,"Successfully Added", Toast.LENGTH_SHORT).show()
 
         }
 
@@ -64,9 +72,6 @@ class BestSellingProducts(
     }
 
     fun addToList(allContact: List<ProductData?>?) {
-        if (allContact != null) {
-            productList.addAll(allContact)
-        }
         if (allContact != null) {
             productList.addAll(allContact)
         }

@@ -6,6 +6,7 @@ import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,7 @@ import com.emon.offlinecachingwithroom.Adapter.BestSellingProducts
 import com.emon.offlinecachingwithroom.Room.ViewModel.ProductViewModel
 import com.google.gson.Gson
 import dmax.dialog.SpotsDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager: GridLayoutManager
     lateinit var productViewModel: ProductViewModel
+    lateinit var cart: TextView
     lateinit var showBtn: Button
 
     private var bestSellingProducts: BestSellingProducts? = null
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
 
+        cart = findViewById(R.id.cart_number)
         showBtn = findViewById(R.id.show_all)
         recyclerView = findViewById(R.id.recycler)
         layoutManager = GridLayoutManager(this, 2)
@@ -112,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 Log.wtf(TAG, Gson().toJson(response.body()))
 
                 val productList: ArrayList<ProductData?> = response.body()?.product_list!!
-                bestSellingProducts = BestSellingProducts(this@MainActivity, productList,productViewModel)
+                bestSellingProducts = BestSellingProducts(this@MainActivity, productList,productViewModel,cart)
                 recyclerView.adapter = bestSellingProducts
 
                 flag = false
