@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.emon.coroutinesexample.Adapter.BestSellingProducts
 import com.emon.coroutinesexample.ModelClass.ProductData
 import dmax.dialog.SpotsDialog
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,14 +36,13 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         MainScope().launch {
-            getProductInfo()
+            bestSellingProducts = BestSellingProducts(this@MainActivity, getProductInfo()!!)
+            recyclerView.adapter = bestSellingProducts
+            dialog.dismiss()
         }
-
-
-
     }
 
-    private suspend fun getProductInfo() {
+    private suspend fun getProductInfo(): ArrayList<ProductData?>? {
 
         dialog = SpotsDialog.Builder().setContext(this)
             .setTheme(R.style.Custom)
@@ -61,10 +62,9 @@ class MainActivity : AppCompatActivity() {
             "",
             "")
 
-        val productList: ArrayList<ProductData?> = response?.body()?.product_list!!
-        bestSellingProducts = BestSellingProducts(this@MainActivity, productList)
-        recyclerView.adapter = bestSellingProducts
-        dialog.dismiss()
+        return withContext(Dispatchers.IO){
+            response?.body()?.product_list!!
+        }
 
     }
 }
