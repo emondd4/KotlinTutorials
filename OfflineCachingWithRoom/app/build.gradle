@@ -65,7 +65,7 @@ dependencies {
     androidTestImplementation "androidx.room:room-testing:$room_version"
 
     //kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
 
