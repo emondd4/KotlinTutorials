@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    //App Custom Colors
+    <color name="splash_background">#021E65</color>
+    <color name="grey">#F0F0F0</color>
+    <color name="search_grey">#F2F2F2</color>
+    <color name="yellow">#FC6600</color>
+    <color name="grey_background">#F8F8F8</color>
+    <color name="star_grey">#DBDBDB</color>
+    <color name="divider">#40707070</color>
+    <color name="order_yellow">#E0772A</color>
+    <color name="order_green">#069311</color>
+    <color name="order_red">#FF0000</color>
+    <color name="cancel_red">#E50000</color>
+    <color name="inactive_text_color">#797979</color>
+    <color name="cart_amount">#2CFC6600</color>
+
+</resources>

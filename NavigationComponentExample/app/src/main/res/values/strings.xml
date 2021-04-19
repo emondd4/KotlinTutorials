@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">NavigationComponentExample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Skip</string>
+    <string name="i_agree_to_the_privacy_policy_and_terms_amp_conditions_of_limarket"><![CDATA[I agree to the Privacy Policy and Terms & Conditions of Limarket]]></string>
+    <string name="category">Category</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="cart">Cart</string>
+    <string name="account">Account</string>
+    <string name="orders">Orders</string>
+    <string name="change_language">Change Language</string>
+    <string name="address">Address</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="edit">Edit</string>
+    <string name="name">Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="email">Email</string>
+    <string name="select_language">Select Language</string>
+    <string name="no_address_provided">No Address Provided</string>
+    <string name="order_list">Order List</string>
+    <string name="best_merchant">Best Merchant</string>
+    <string name="show_all">Show All</string>
+    <string name="ongoing_campaigns">Ongoing Campaigns</string>
+    <string name="brands_for_you">Brands For You</string>
+    <string name="best_sale_products">Best Sale Products</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="suppliers">Suppliers</string>
+    <string name="brands">Brands</string>
+    <string name="gadget_fest">Gadget Fest</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="also_available_at">Also Available at</string>
+    <string name="review_amp_ratings"><![CDATA[Review & Ratings]]></string>
+    <string name="my_cart">My Cart</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="checkout_information">Checkout Information</string>
+    <string name="billing_address">Billing Address</string>
+    <string name="products">Products</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="delivery_charge">Delivery Charge</string>
+    <string name="vat">Vat</string>
+    <string name="total">Total</string>
+    <string name="place_order">Place Order</string>
+
+    //spinners//
+    <string-array name="see_all">
+        <item>Brands</item>
+        <item>Products</item>
+        <item>Shops</item>
+    </string-array>
+
+    ////////api////////
+    <string name="base_url">https://soft30.bdtask.com/limarket/</string>
+    <string name="key">harunApp</string>
+    <string name="token">apiToken</string>
+
+    <string name="strike_through">
+        <Strike>350000.00 XAF</Strike>
+    </string>
+    <string name="order_details">Order Details</string>
+    <string name="current_status">Current Status</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="unpaid">Unpaid</string>
+    <string name="payable_amount">Payable Amount</string>
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="sign_in">Sign In</string>
+    <string name="send_email">Send Email</string>
+    <string name="loading">Loading...</string>
+    <string name="data_missing">Data Missing in Database</string>
+    <string name="enter_your_email_address">Enter Your Email Address</string>
+    <string name="enter_your_contact_number">Enter Your Contact Number</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="enter_road_no_block_sector">Enter Road No, Block/Sector</string>
+    <string name="customer_address_2_optional">Customer Address 2 (Optional)</string>
+    <string name="customer_address_1_optional">Customer Address 1 (Optional)</string>
+    <string name="enter_area">Enter Area</string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_region">Enter Region</string>
+    <string name="enter_country">Enter Country</string>
+    <string name="enter_zip">Enter Zip</string>
+    <string name="enter_company">Enter Company</string>
+    <string name="company">Company</string>
+    <string name="enter_your_date_of_birth">Enter Your Date of Birth</string>
+    <string name="date_of_birth">Date of Birth *</string>
+    <string name="gender">Gender *</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="email_address_this_will_be_the_primary_mail_to_login">Email Address * (This will be the primary mail to login)</string>
+    <string name="specification">Specification</string>
+    <string name="description">Description</string>
+    <string name="view_all_review_or_write_a_review">View all review or write a review</string>
+    <string name="title">Title</string>
+    <string name="comment">Comment</string>
+    <string name="add_review">Add Review</string>
+    <string name="what_would_you_like_to_buy">What would you like to buy?</string>
+    <string name="no_products_available">No Products Available</string>
+</resources>
