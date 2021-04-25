@@ -1,11 +1,13 @@
 package com.emon.offlinecachingwithroom.Room.Adapter
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.emon.offlinecachingwithroom.R
 import com.emon.offlinecachingwithroom.Room.Model.Product
@@ -87,6 +89,46 @@ class ProductAdapter(
             }
         }
 
+        holder.delete.setOnClickListener {
+
+            val builder = AlertDialog.Builder(showAllActivity)
+            //set title for alert dialog
+            builder.setTitle("Delete Item?")
+            //set message for alert dialog
+            builder.setMessage("Are You Sure?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+            //performing positive action
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                Toast.makeText(showAllActivity.applicationContext,"clicked yes",Toast.LENGTH_LONG).show()
+
+                val product = Product(
+                    productList[position].product_id.toString().toInt(),
+                    productList[position].thumb_image_url!!,
+                    productList[position].category_name!!,
+                    productList[position].price,
+                    productList[position].sub_price,
+                    productList[position].quantity,
+                    productList[position].title!!
+                )
+                productViewModel.deleteProduct(product)
+            }
+            //performing cancel action
+            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+                Toast.makeText(showAllActivity.applicationContext,"clicked cancel",Toast.LENGTH_LONG).show()
+            }
+            //performing negative action
+            builder.setNegativeButton("No"){dialogInterface, which ->
+                Toast.makeText(showAllActivity.applicationContext,"clicked No",Toast.LENGTH_LONG).show()
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -101,6 +143,7 @@ class ProductAdapter(
         val add: Button = itemView.findViewById(R.id.show_all_add)
         val minus: Button = itemView.findViewById(R.id.show_all_minus)
         val number: TextView = itemView.findViewById(R.id.show_all_item_freq)
+        val delete: ImageView = itemView.findViewById(R.id.show_all_delete)
 
     }
 
