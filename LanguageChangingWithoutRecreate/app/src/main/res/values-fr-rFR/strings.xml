@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LanguageChangingWithoutRecreate</string>
+    <string name="hello_world">"Bonjour le monde "</string>
+    <string name="change_language">"Changer de langue "</string>
+</resources>
