@@ -1,0 +1,2 @@
+rootProject.name = "ChipsKotlin"
+include ':app'
