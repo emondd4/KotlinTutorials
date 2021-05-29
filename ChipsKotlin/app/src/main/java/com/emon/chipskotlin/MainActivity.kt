@@ -12,6 +12,7 @@ import com.bdtask.limarket.ModelClass.SearchProductModel.SearchProductModel
 import com.emon.chipskotlin.SearchProductModel.SearchProductCategory
 import com.emon.chipskotlin.Utils.ApiClient
 import com.emon.chipskotlin.Utils.DataRequestInterface
+import com.emon.chipskotlin.Utils.SharedPref
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
@@ -28,24 +29,45 @@ class MainActivity : AppCompatActivity() {
     lateinit var GroupChip: ChipGroup
     private val TAG = "Product Searching"
 
+    private var tempData: ArrayList<String?>? = ArrayList()
+    private var categoryData: ArrayList<SearchProductCategory?>? = null
+    private var sharedTemp: ArrayList<String?>? = ArrayList()
+    private var sharedCategory: ArrayList<SearchProductCategory?>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        SharedPref.init(this)
+        sharedTemp = SharedPref.getArrayList("temp", null)
+        sharedCategory = SharedPref.getSearchCategoryObject("Category", null)
 
         dataRequestInterface = ApiClient.getRetrofit(this)
             .create(DataRequestInterface::class.java)
 
         GroupChip = findViewById(R.id.chipGroup)
 
-        GroupChip.setOnCheckedChangeListener { group, checkedId ->
-            // get the checked chip instance from chip group
-            (findViewById<Chip>(checkedId))?.let {
-                // Show the checked chip text on toast view
-                Toast.makeText(this,"Checked + ${it.text}",Toast.LENGTH_SHORT).show()
+        if (!sharedTemp.isNullOrEmpty()){
+            for (i in sharedTemp!!.indices){
+                println("$i ${sharedTemp!![i]}")
+                tempData!!.add(sharedTemp!![i])
             }
         }
 
-        getSearchProduct()
+        if (!sharedCategory.isNullOrEmpty()) {
+            for (i in sharedCategory!!.indices) {
+                if (sharedCategory!![i]?.category_name != null) {
+                    GroupChip.addChip(
+                        this@MainActivity,
+                        sharedCategory!![i]?.category_name!!,
+                        sharedCategory!![i]?.category_id!!
+                    )
+                }
+            }
+        } else {
+            getSearchProduct()
+        }
+
     }
 
     private fun getSearchProduct() {
@@ -69,16 +91,23 @@ class MainActivity : AppCompatActivity() {
         )
 
         call?.enqueue(object : Callback<SearchProductModel?> {
-            override fun onResponse(call: Call<SearchProductModel?>, response: Response<SearchProductModel?>) {
+            override fun onResponse(
+                call: Call<SearchProductModel?>,
+                response: Response<SearchProductModel?>
+            ) {
                 Log.wtf(TAG, Gson().toJson(response.body()))
 
-                val categoryData: ArrayList<SearchProductCategory?> = response.body()?.category_list!!
+                categoryData = response.body()?.category_list!!
+                SharedPref.saveSearchCategoryObject("Category", categoryData!!)
 
-                for (i in categoryData.indices){
-                    //println(categoryData[i]?.category_name!!)
-                    if (categoryData[i]?.category_name != null){
-                        //addChip(categoryData[i]?.category_name!!,chipGroup)
-                        GroupChip.addChip(this@MainActivity,categoryData[i]?.category_name!!,categoryData[i]?.category_id!!)
+                for (i in categoryData!!.indices) {
+                    if (categoryData!![i]?.category_name != null) {
+                        GroupChip.addChip(
+                            this@MainActivity,
+                            categoryData!![i]?.category_name!!,
+                            categoryData!![i]?.category_id!!
+                        )
+                        tempData?.clear()
                     }
                 }
 
@@ -98,8 +127,9 @@ class MainActivity : AppCompatActivity() {
         Chip(context).apply {
             id = View.generateViewId()
             text = label
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                chipBackgroundColor = resources.getColorStateList(R.color.chip_bg,this@MainActivity.theme)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                chipBackgroundColor =
+                    resources.getColorStateList(R.color.chip_bg, this@MainActivity.theme)
             } else {
                 chipBackgroundColor = resources.getColorStateList(R.color.chip_bg)
             }
@@ -109,20 +139,33 @@ class MainActivity : AppCompatActivity() {
             isFocusable = true
             addView(this)
 
+            if (!sharedTemp.isNullOrEmpty()) {
+                if (sharedTemp!!.contains(categoryId)) {
+                    isChecked = true
+                }
+            }
+
             this.setOnClickListener {
 
-                Toast.makeText(this@MainActivity,""+addId(categoryId),Toast.LENGTH_SHORT).show()
+                if (tempData!!.contains(categoryId)) {
+                    tempData!!.remove(categoryId)
+                } else {
+                    tempData!!.add(categoryId)
+                }
+
+                Toast.makeText(this@MainActivity, "" + tempData, Toast.LENGTH_SHORT).show()
+                SharedPref.saveArrayList("temp", tempData)
             }
         }
     }
 
     companion object {
-        var temp: String?  = ""
+        var temp: String? = ""
 
         fun addId(id: String?): String {
-            if (temp != ""){
+            if (temp != "") {
                 temp = "$temp--$id"
-            }else{
+            } else {
                 temp += id
             }
             return temp as String
