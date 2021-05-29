@@ -1,11 +1,13 @@
 package com.emon.chipskotlin
 
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import com.bdtask.limarket.ModelClass.SearchProductModel.SearchProductModel
 import com.emon.chipskotlin.SearchProductModel.SearchProductCategory
 import com.emon.chipskotlin.Utils.ApiClient
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var dialog: android.app.AlertDialog
     private var dataRequestInterface: DataRequestInterface? = null
-    lateinit var chipGroup: ChipGroup
+    lateinit var GroupChip: ChipGroup
     private val TAG = "Product Searching"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +35,13 @@ class MainActivity : AppCompatActivity() {
         dataRequestInterface = ApiClient.getRetrofit(this)
             .create(DataRequestInterface::class.java)
 
-        chipGroup = findViewById(R.id.chipGroup)
+        GroupChip = findViewById(R.id.chipGroup)
 
-        chipGroup.setOnCheckedChangeListener{group,checkedId:Int ->
-            // Get the checked chip instance from chip group
-            val chip:Chip? = findViewById(checkedId)
-
-            chip?.let {
-                // Show the checked chip text on toast message
-                Toast.makeText(this,"Checked ChipGroup",Toast.LENGTH_SHORT).show()
+        GroupChip.setOnCheckedChangeListener { group, checkedId ->
+            // get the checked chip instance from chip group
+            (findViewById<Chip>(checkedId))?.let {
+                // Show the checked chip text on toast view
+                Toast.makeText(this,"Checked + ${it.text}",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity() {
                 for (i in categoryData.indices){
                     //println(categoryData[i]?.category_name!!)
                     if (categoryData[i]?.category_name != null){
-                        addChip(categoryData[i]?.category_name!!,chipGroup)
+                        //addChip(categoryData[i]?.category_name!!,chipGroup)
+                        GroupChip.addChip(this@MainActivity,categoryData[i]?.category_name!!,categoryData[i]?.category_id!!)
                     }
                 }
 
@@ -92,25 +93,39 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun addChip(pItem: String, pChipGroup: ChipGroup) {
-        val lChip = Chip(this)
+    fun ChipGroup.addChip(context: Context, label: String, categoryId: String) {
 
-        lChip.text = pItem
-        lChip.setTextColor(resources.getColor(R.color.white))
-        //lChip.chipBackgroundColor = AppCompatResources.getColorStateList(this,R.color.chip_bg)
-
-        lChip.setOnClickListener {
-            if (!lChip.isChecked){
-                Toast.makeText(this,"Checked",Toast.LENGTH_SHORT).show()
-                lChip.isChecked = true
-                lChip.chipBackgroundColor = AppCompatResources.getColorStateList(this,R.color.chip_bg)
-            }else{
-                Toast.makeText(this,"Again Checked",Toast.LENGTH_SHORT).show()
-                lChip.isChecked = false
-                lChip.chipBackgroundColor = AppCompatResources.getColorStateList(this,R.color.chip_bg)
+        Chip(context).apply {
+            id = View.generateViewId()
+            text = label
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                chipBackgroundColor = resources.getColorStateList(R.color.chip_bg,this@MainActivity.theme)
+            } else {
+                chipBackgroundColor = resources.getColorStateList(R.color.chip_bg)
             }
+            isClickable = true
+            isCheckable = true
+            isCheckedIconVisible = false
+            isFocusable = true
+            addView(this)
 
+            this.setOnClickListener {
+
+                Toast.makeText(this@MainActivity,""+addId(categoryId),Toast.LENGTH_SHORT).show()
+            }
         }
-        pChipGroup.addView(lChip, pChipGroup.childCount - 1)
+    }
+
+    companion object {
+        var temp: String?  = ""
+
+        fun addId(id: String?): String {
+            if (temp != ""){
+                temp = "$temp--$id"
+            }else{
+                temp += id
+            }
+            return temp as String
+        }
     }
 }
