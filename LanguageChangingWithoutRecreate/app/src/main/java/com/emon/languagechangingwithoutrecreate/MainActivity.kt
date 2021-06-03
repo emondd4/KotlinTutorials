@@ -46,16 +46,6 @@ class MainActivity : AppCompatActivity() {
         onConfigurationChanged(conf)
     }
 
-    private fun setLocale2(lang: String, s: String) {
-        val myLocale = Locale(lang,s)
-        val res: Resources = resources
-        val dm: DisplayMetrics = res.displayMetrics
-        val conf: Configuration = res.configuration
-        conf.locale = myLocale
-        res.updateConfiguration(conf, dm)
-        onConfigurationChanged(conf)
-    }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
 
 
