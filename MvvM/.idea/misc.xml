@@ -9,10 +9,11 @@
         <entry key="..\:/Dummy Projects/KotlinTutorials/MvvM/app/src/main/res/layout/fragment_saved_news.xml" value="0.3578125" />
         <entry key="..\:/Dummy Projects/KotlinTutorials/MvvM/app/src/main/res/layout/fragment_search_news.xml" value="0.3578125" />
         <entry key="..\:/Dummy Projects/KotlinTutorials/MvvM/app/src/main/res/layout/list_article_preview.xml" value="0.3578125" />
+        <entry key="..\:/Dummy Projects/KotlinTutorials/MvvM/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3578125" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
