@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Coroutines Example</string>
-
-    ////////api////////
-    <string name="base_url">https://www.limarket.net/</string>
-    <string name="key">harunApp</string>
-    <string name="token">apiToken</string>
-
-</resources>
