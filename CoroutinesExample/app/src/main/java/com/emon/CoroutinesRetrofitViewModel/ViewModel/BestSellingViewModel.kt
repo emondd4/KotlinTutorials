@@ -1,18 +1,15 @@
-package com.emon.coroutinesexample.ViewModel
+package com.emon.CoroutinesRetrofitViewModel.ViewModel
 
-import android.app.AlertDialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.emon.coroutinesexample.ApiClient
-import com.emon.coroutinesexample.DataRequestInterface
-import com.emon.coroutinesexample.ModelClass.ProductData
-import com.emon.coroutinesexample.R
-import dmax.dialog.SpotsDialog
+import com.emon.CoroutinesRetrofitViewModel.DataRequestInterface
+import com.emon.CoroutinesRetrofitViewModel.ModelClass.ProductData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.await
 
 class BestSellingViewModel : ViewModel() {
 
@@ -26,21 +23,15 @@ class BestSellingViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getProductInfo(): ArrayList<ProductData?> {
+    private suspend fun getProductInfo(): ArrayList<ProductData?>? {
 
-        val response = DataRequestInterface().getProductList(
+        val response = DataRequestInterface().getRandomProducts(
             "harunApp",
-            "235",
-            1,
-            "2",
-            "",
-            "",
-            "",
-            "",
+            "250",
             "")
 
         return withContext(Dispatchers.IO){
-            response?.body()?.product_list!!
+            response?.await()?.data?.random_product_list
         }
     }
 }

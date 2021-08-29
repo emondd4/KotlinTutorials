@@ -1,21 +1,15 @@
-package com.emon.coroutinesexample
+package com.emon.CoroutinesRetrofitViewModel
 
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.emon.coroutinesexample.Adapter.BestSellingProducts
-import com.emon.coroutinesexample.ModelClass.ProductData
-import com.emon.coroutinesexample.ViewModel.BestSellingViewModel
+import com.emon.CoroutinesRetrofitViewModel.Adapter.BestSellingProducts
+import com.emon.CoroutinesRetrofitViewModel.ViewModel.BestSellingViewModel
 import dmax.dialog.SpotsDialog
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 

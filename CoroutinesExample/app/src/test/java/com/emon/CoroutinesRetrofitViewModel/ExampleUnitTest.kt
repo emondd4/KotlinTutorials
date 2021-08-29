@@ -1,4 +1,4 @@
-package com.emon.coroutinesexample
+package com.emon.CoroutinesRetrofitViewModel
 
 import org.junit.Test
 

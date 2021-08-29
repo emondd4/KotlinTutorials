@@ -1,4 +1,4 @@
-package com.emon.coroutinesexample.Adapter
+package com.emon.CoroutinesRetrofitViewModel.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.emon.coroutinesexample.MainActivity
-import com.emon.coroutinesexample.ModelClass.ProductData
-import com.emon.coroutinesexample.R
+import com.emon.CoroutinesRetrofitViewModel.MainActivity
+import com.emon.CoroutinesRetrofitViewModel.ModelClass.ProductData
+import com.emon.CoroutinesRetrofitViewModel.R
 import com.squareup.picasso.Picasso
 
 
@@ -20,7 +20,7 @@ class BestSellingProducts(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BestSellingProducts.ViewHolder {
+    ): ViewHolder {
         val view: View = LayoutInflater.from(activity).inflate(
             R.layout.products_item,
             parent,
@@ -29,7 +29,7 @@ class BestSellingProducts(
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BestSellingProducts.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
         Picasso.get().load(productList[position]?.thumb_image_url).into(holder.image)

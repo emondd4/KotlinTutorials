@@ -1,4 +1,4 @@
-package com.emon.coroutinesexample
+package com.emon.CoroutinesRetrofitViewModel
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
