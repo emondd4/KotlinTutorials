@@ -1,13 +1,19 @@
 package com.example.mvvmcoroutinesretrofitviewmodel.Retrofit
 
-import com.example.mvvmcoroutinesretrofitviewmodel.Models.RecyclerList
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-interface RetrofitInstance {
-    @GET("repositories")
-    suspend fun getDataFromApi(
-        @Query("q") query: String
-    ): RecyclerList
+class RetrofitInstance {
 
+    companion object{
+        val BaseURL = "https://api.github.com/search/"
+
+        fun getRetroInstance(): Retrofit{
+            return  Retrofit.Builder()
+                .baseUrl(BaseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+    }
 }
