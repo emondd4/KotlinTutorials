@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/bottom_menu.xml" value="0.37864583333333335" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/ic_baseline_format.xml" value="0.37864583333333335" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/ic_baseline_home.xml" value="0.37864583333333335" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/ic_baseline_info.xml" value="0.37864583333333335" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/activity_main.xml" value="0.21808510638297873" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_fragment.xml" value="0.2657407407407407" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_friends.xml" value="0.1672473867595819" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_info.xml" value="0.3625" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_list.xml" value="0.3625" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/menu/bottom_menu.xml" value="0.3625" />
+        <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/menu/drawer_menu.xml" value="0.2657407407407407" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
