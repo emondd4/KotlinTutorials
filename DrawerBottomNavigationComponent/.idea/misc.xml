@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dummy Projects/KotlinTutorials/DrawerBottomNavigationComponent/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Dummy Projects/KotlinTutorials/DrawerBottomNavigationComponent/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
         <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/bottom_menu.xml" value="0.37864583333333335" />
         <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/ic_baseline_format.xml" value="0.37864583333333335" />
         <entry key="..\:/Practices/DrawerBottomNavigationComponent/app/src/main/res/drawable/ic_baseline_home.xml" value="0.37864583333333335" />

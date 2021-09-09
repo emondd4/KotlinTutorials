@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CustomSpinner</string>
+
+    <string-array name="dummy">
+        <item>Emon</item>
+        <item>Hossain</item>
+        <item>Munna</item>
+    </string-array>
+
+</resources>
