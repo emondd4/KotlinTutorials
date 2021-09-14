@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MvvmRetrofit</string>
+
+    <string name="base_url">https://api.themoviedb.org/</string>
+    <string name="api_key">3457d5cd958fe30210b4b7d897add767</string>
+
+</resources>
