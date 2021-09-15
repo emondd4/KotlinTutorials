@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("OnResponse", "RandomProductList: $productsData")
 
-            productViewModel.setRandomProducts(productsData)
+            productViewModel.setRandomProducts(productsData.toMutableList())
         }
 
         CoroutineScope(Dispatchers.Main).launch {

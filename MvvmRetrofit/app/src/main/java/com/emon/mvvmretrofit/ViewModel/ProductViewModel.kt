@@ -14,21 +14,21 @@ class ProductViewModel(application: Application): AndroidViewModel(application) 
     val getRandomProducts: Call<RandomProductBaseModel?>
 
     private val repository: ProductRepository
-    private var randomProductsData: ArrayList<RandomProductsData?>? = null
+    private var randomProductsData: MutableList<RandomProductsData?>? = null
 
     init {
         val dataRequestInterface = ApiService.getRetrofit(application)
             .create(DataRequestInterface::class.java)
 
-        repository = ProductRepository(dataRequestInterface)
+        repository = ProductRepository(dataRequestInterface,application)
         getRandomProducts = repository.randomProductsData!!
     }
 
-    fun setRandomProducts(randomProductsData: ArrayList<RandomProductsData?>){
+    fun setRandomProducts(randomProductsData: MutableList<RandomProductsData?>){
         this.randomProductsData = randomProductsData
     }
 
-    fun getRandomProducts(): ArrayList<RandomProductsData?>? {
+    fun getRandomProducts(): MutableList<RandomProductsData?>? {
         return randomProductsData
     }
 

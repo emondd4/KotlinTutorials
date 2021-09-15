@@ -14,11 +14,10 @@ import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class RandomProductsAdapter(
     private val activity: FragmentActivity?,
-    private val productList: ArrayList<RandomProductsData?>
+    private val productList: MutableList<RandomProductsData?>
 ) : RecyclerView.Adapter<RandomProductsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
