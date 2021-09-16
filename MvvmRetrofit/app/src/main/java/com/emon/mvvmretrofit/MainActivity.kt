@@ -11,6 +11,7 @@ import com.emon.mvvmretrofit.ViewModel.ProductViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import retrofit2.await
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,12 +40,20 @@ class MainActivity : AppCompatActivity() {
             productViewModel.setRandomProducts(productsData.toMutableList())
         }
 
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
+        try {
             randomProductsAdapter = RandomProductsAdapter(this@MainActivity, productViewModel.getRandomProducts()!!)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = randomProductsAdapter
+        }catch (e: Exception){
+            Log.d("Exception", "onException: $e ")
         }
+
+//        CoroutineScope(Dispatchers.Main).launch {
+//            delay(5000)
+//            randomProductsAdapter = RandomProductsAdapter(this@MainActivity, productViewModel.getRandomProducts()!!)
+//            recyclerView.layoutManager = layoutManager
+//            recyclerView.adapter = randomProductsAdapter
+//        }
     }
 
 
