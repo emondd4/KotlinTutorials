@@ -1,17 +1,16 @@
 package com.emon.CoroutinesRetrofitViewModel.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.emon.CoroutinesRetrofitViewModel.DataRequestInterface
 import com.emon.CoroutinesRetrofitViewModel.ModelClass.ProductData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.await
+import kotlin.coroutines.coroutineContext
 
-class BestSellingViewModel : ViewModel() {
+class BestSellingViewModel(application: Application) : AndroidViewModel(application) {
 
     val products: LiveData<ArrayList<ProductData?>> = MutableLiveData()
 
@@ -25,7 +24,7 @@ class BestSellingViewModel : ViewModel() {
 
     private suspend fun getProductInfo(): ArrayList<ProductData?>? {
 
-        val response = DataRequestInterface().getRandomProducts(
+        val response = DataRequestInterface(getApplication<Application>().applicationContext).getRandomProducts(
             "harunApp",
             "250",
             "")

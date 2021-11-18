@@ -118,10 +118,6 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
         mapView.onLowMemory()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
     private fun checkPermissions() {
         val permissionLocation = ContextCompat.checkSelfPermission(
             this@MainActivity,

@@ -1,5 +1,6 @@
 package com.emon.CoroutinesRetrofitViewModel
 
+import android.content.Context
 import com.emon.CoroutinesRetrofitViewModel.ModelClass.ProductBaseModel
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -19,10 +20,11 @@ interface DataRequestInterface {
     ) : Call<ProductBaseModel?>?
 
     companion object {
-        operator fun invoke(): DataRequestInterface {
+
+        operator fun invoke(applicationContext: Context): DataRequestInterface {
             return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://www.limarket.net/")
+                .baseUrl(applicationContext.resources.getString(R.string.base_url))
                 .build()
                 .create(DataRequestInterface::class.java)
         }
