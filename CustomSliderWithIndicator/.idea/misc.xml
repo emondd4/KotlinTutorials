@@ -9,6 +9,10 @@
         <entry key="..\:/CustomSliderWithIndicator/app/src/main/res/layout/fragment__one.xml" value="0.1" />
         <entry key="..\:/CustomSliderWithIndicator/app/src/main/res/layout/fragment__three.xml" value="0.1" />
         <entry key="..\:/CustomSliderWithIndicator/app/src/main/res/layout/fragment__two.xml" value="0.1" />
+        <entry key="..\:/KotlinTutorials/CustomSliderWithIndicator/app/src/main/res/drawable/active_circle.xml" value="0.3828125" />
+        <entry key="..\:/KotlinTutorials/CustomSliderWithIndicator/app/src/main/res/drawable/disable_circle.xml" value="0.3828125" />
+        <entry key="..\:/KotlinTutorials/CustomSliderWithIndicator/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/KotlinTutorials/CustomSliderWithIndicator/app/src/main/res/layout/fragment__one.xml" value="0.23333333333333334" />
       </map>
     </option>
   </component>
